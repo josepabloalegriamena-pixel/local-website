@@ -13,6 +13,8 @@ const legalNavLinks = [
   { path: '/terms', label: 'Terms' },
 ];
 
+const knownPaths = [...routes, ...legalNavLinks].map((item) => item.path);
+
 const ownerReasons = [
   { title: 'Succession', desc: 'A structured path when ownership transition needs clarity.' },
   { title: 'Partial Liquidity', desc: 'Flexibility for owners seeking liquidity without abrupt disruption.' },
@@ -290,7 +292,7 @@ function App() {
   useEffect(() => {
     const onChange = () => {
       const p = hashPath();
-      const known = routes.some((r) => r.path === p);
+      const known = knownPaths.includes(p);
       setPath(known ? p : '/');
       if (!known) navigate('/');
     };
