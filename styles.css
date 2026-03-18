@@ -34,6 +34,9 @@ a:hover { text-decoration: underline; }
 .nav-link { border: 0; background: transparent; color: var(--muted); padding: 0.4rem 0.6rem; cursor: pointer; border-radius: 8px; }
 .nav-link.active, .nav-link:hover { background: rgba(15, 118, 110, 0.1); color: var(--text); }
 .header-cta { display: flex; gap: 0.65rem; flex-wrap: wrap; }
+.lang-toggle { display: inline-flex; align-items: center; gap: 0.2rem; padding: 0.2rem; border: 1px solid var(--border); border-radius: 999px; background: rgba(255, 255, 255, 0.7); }
+.lang-btn { border: 0; background: transparent; color: var(--muted); border-radius: 999px; padding: 0.35rem 0.6rem; font-weight: 700; cursor: pointer; }
+.lang-btn.active { background: var(--accent); color: #ffffff; }
 .btn { border: 1px solid transparent; border-radius: 999px; padding: 0.56rem 1.05rem; font-weight: 700; cursor: pointer; }
 .btn-primary { background: var(--accent); color: white; box-shadow: 0 8px 20px rgba(15, 118, 110, 0.28); }
 .btn-secondary { border-color: var(--border); background: var(--surface); color: var(--text); }
