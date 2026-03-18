@@ -8,6 +8,11 @@ const routes = [
   { path: '/contact', label: 'Contact' },
 ];
 
+const legalNavLinks = [
+  { path: '/privacy', label: 'Privacy Policy' },
+  { path: '/terms', label: 'Terms' },
+];
+
 const ownerReasons = [
   { title: 'Succession', desc: 'A structured path when ownership transition needs clarity.' },
   { title: 'Partial Liquidity', desc: 'Flexibility for owners seeking liquidity without abrupt disruption.' },
@@ -103,8 +108,7 @@ function Shell({ path, children }) {
         <div className="container footer-grid">
           <p className="footer-note">Loal Capital is currently in the process of formal legal structuring.</p>
           <div className="footer-links">
-            <a href="#/contact">Privacy Policy</a>
-            <a href="#/contact">Terms</a>
+            {legalNavLinks.map((item) => <a key={item.path} href={`#${item.path}`}>{item.label}</a>)}
             <a href="mailto:contact@loalcapital.com">contact@loalcapital.com</a>
           </div>
         </div>
@@ -200,6 +204,7 @@ function ContactPage() {
           <input type="hidden" name="_subject" value="New LOAL website contact submission" />
           <input type="hidden" name="_template" value="table" />
           <input type="text" name="_honey" style={{ display: 'none' }} tabIndex="-1" autoComplete="off" />
+          <p className="form-note">Please do not submit sensitive personal, financial, or confidential information through this form.</p>
           <label>Name<input type="text" name="name" required /></label>
           <label>Email<input type="email" name="email" required /></label>
           <label>Company<input type="text" name="company" /></label>
@@ -219,6 +224,64 @@ function ContactPage() {
         </aside>
       </div>
     </Section>
+  );
+}
+
+function PrivacyPage() {
+  return (
+    <>
+      <Section eyebrow="Privacy Policy" title="Privacy Policy" subtitle="This policy explains what information LOAL Capital collects through this website and how that information is used." asH1>
+        <div className="legal-copy">
+          <p><strong>Effective date:</strong> March 17, 2026</p>
+          <h3>Information we collect</h3>
+          <p>LOAL Capital collects the information you choose to submit through the contact form, including your name, email address, company name, and message contents.</p>
+          <h3>How we use information</h3>
+          <p>We use submitted information to review inquiries, respond to potential counterparties or investors, and maintain a record of communications relevant to our business activities.</p>
+          <h3>How the form works</h3>
+          <p>Contact form submissions are transmitted through a third-party form processing service and forwarded to LOAL Capital email inboxes. You should not submit sensitive personal, financial, or confidential information through the website form.</p>
+          <h3>Information sharing</h3>
+          <p>We do not sell personal information submitted through this website. Information may be shared internally with relevant LOAL Capital personnel or with service providers supporting website operations, email handling, and security.</p>
+          <h3>Data retention</h3>
+          <p>We retain inquiry information for as long as reasonably necessary to evaluate, respond to, and document communications, or as otherwise required by applicable law or legitimate business needs.</p>
+          <h3>Security</h3>
+          <p>We use reasonable administrative and technical measures appropriate for a public corporate website, including HTTPS when enabled for the domain. No method of internet transmission or storage is completely secure.</p>
+          <h3>Your choices</h3>
+          <p>You may request that we update or delete contact information you previously submitted, subject to any legal, regulatory, or recordkeeping obligations that require retention.</p>
+          <h3>Contact</h3>
+          <p>Questions regarding this Privacy Policy may be sent to <a href="mailto:jose@loalcapital.com">jose@loalcapital.com</a> or <a href="mailto:guillermolopez@loalcapital.com">guillermolopez@loalcapital.com</a>.</p>
+        </div>
+      </Section>
+    </>
+  );
+}
+
+function TermsPage() {
+  return (
+    <>
+      <Section eyebrow="Terms" title="Terms of Use" subtitle="These terms govern use of the LOAL Capital website." asH1>
+        <div className="legal-copy">
+          <p><strong>Effective date:</strong> March 17, 2026</p>
+          <h3>Use of the website</h3>
+          <p>This website is provided for general informational purposes only. By accessing or using the site, you agree to use it lawfully and in a manner consistent with these Terms of Use.</p>
+          <h3>No offer or solicitation</h3>
+          <p>Nothing on this website constitutes an offer to sell, a solicitation of an offer to buy, investment advice, legal advice, or a commitment to enter into any transaction or business relationship.</p>
+          <h3>No reliance</h3>
+          <p>Website content is presented on an as-is basis for general information. Visitors should not rely on the website as a substitute for direct diligence, professional advice, or formal written agreements.</p>
+          <h3>Permitted communications</h3>
+          <p>Any information submitted through the contact form must be lawful and appropriate for an initial business inquiry. Do not submit sensitive personal data, banking details, passwords, or highly confidential information through the site.</p>
+          <h3>Intellectual property</h3>
+          <p>Unless otherwise stated, website content, branding, layout, and text are owned by or used with permission by LOAL Capital. You may not copy, reproduce, or distribute site materials except for personal, non-commercial reference.</p>
+          <h3>Third-party services</h3>
+          <p>The website may rely on third-party hosting, domain, analytics, or form-processing services. LOAL Capital is not responsible for the independent policies or uptime of those third-party providers.</p>
+          <h3>Limitation of liability</h3>
+          <p>To the maximum extent permitted by law, LOAL Capital disclaims liability for any direct, indirect, incidental, or consequential loss arising from use of, or inability to use, this website.</p>
+          <h3>Changes</h3>
+          <p>We may update these Terms of Use from time to time by posting a revised version on this website. Continued use of the site after changes are posted constitutes acceptance of the revised terms.</p>
+          <h3>Contact</h3>
+          <p>Questions regarding these Terms of Use may be sent to <a href="mailto:jose@loalcapital.com">jose@loalcapital.com</a>.</p>
+        </div>
+      </Section>
+    </>
   );
 }
 
@@ -255,6 +318,14 @@ function App() {
         document.title = 'Contact | Loal Capital';
         if (descriptionEl) descriptionEl.content = 'Start a confidential conversation with Loal Capital.';
         return <ContactPage />;
+      case '/privacy':
+        document.title = 'Privacy Policy | Loal Capital';
+        if (descriptionEl) descriptionEl.content = 'Read the privacy policy governing the collection and use of information submitted through the Loal Capital website.';
+        return <PrivacyPage />;
+      case '/terms':
+        document.title = 'Terms of Use | Loal Capital';
+        if (descriptionEl) descriptionEl.content = 'Read the terms of use for the Loal Capital website.';
+        return <TermsPage />;
       default:
         document.title = 'Loal Capital';
         if (descriptionEl) descriptionEl.content = 'Loal Capital is an operator-led firm focused on building lasting value in established Guatemalan companies.';
